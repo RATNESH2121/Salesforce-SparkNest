@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Workflow xmlns="http://soap.sforce.com/2006/04/metadata">
+    <alerts>
+        <fullName>First_Response_SLA_Breached</fullName>
+        <description>First Response SLA Breached</description>
+        <protected>false</protected>
+        <recipients>
+            <type>owner</type>
+        </recipients>
+        <recipients>
+            <recipient>ratneshaugustus.a70f1cafd78d@agentforce.com</recipient>
+            <type>user</type>
+        </recipients>
+        <senderType>CurrentUser</senderType>
+        <template>unfiled$public/First_Response_SLA_Breached</template>
+    </alerts>
+    <alerts>
+        <fullName>First_Response_SLA_Breached1</fullName>
+        <description>First Response SLA Breached1</description>
+        <protected>false</protected>
+        <recipients>
+            <type>owner</type>
+        </recipients>
+        <senderAddress>ratneshaugustus@gmail.com</senderAddress>
+        <senderType>OrgWideEmailAddress</senderType>
+        <template>unfiled$public/First_Response_SLA_Breached</template>
+    </alerts>
+    <alerts>
+        <fullName>Warn_the_Case_Owner_before_the_First_Response_SLA_deadline</fullName>
+        <description>Warn the Case Owner before the First Response SLA deadline.</description>
+        <protected>false</protected>
+        <recipients>
+            <type>owner</type>
+        </recipients>
+        <recipients>
+            <recipient>ratneshaugustus.a70f1cafd78d@agentforce.com</recipient>
+            <type>user</type>
+        </recipients>
+        <senderAddress>ratneshaugustus@gmail.com</senderAddress>
+        <senderType>OrgWideEmailAddress</senderType>
+        <template>unfiled$public/First_Response_SLA_Warning</template>
+    </alerts>
+    <fieldUpdates>
+        <fullName>ChangePriorityToHigh</fullName>
+        <field>Priority</field>
+        <literalValue>High</literalValue>
+        <name>Changes the case priority to high.</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Literal</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>false</reevaluateOnChange>
+    </fieldUpdates>
+</Workflow>

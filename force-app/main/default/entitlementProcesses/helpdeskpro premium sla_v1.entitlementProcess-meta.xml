@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EntitlementProcess xmlns="http://soap.sforce.com/2006/04/metadata">
+    <SObjectType>Case</SObjectType>
+    <active>true</active>
+    <businessHours>HelpdeskPro Business Hours</businessHours>
+    <description>Premium customers: first response within 2 business hours; resolution within 8 business hours.</description>
+    <entryStartDateField>Case.CreatedDate</entryStartDateField>
+    <exitCriteriaFilterItems>
+        <field>Case.IsClosed</field>
+        <operation>equals</operation>
+        <value>true</value>
+    </exitCriteriaFilterItems>
+    <isVersionDefault>true</isVersionDefault>
+    <milestones>
+        <agreementType>SLA</agreementType>
+        <businessHours>HelpdeskPro Business Hours</businessHours>
+        <isDisplayedOnLinkedEntity>true</isDisplayedOnLinkedEntity>
+        <milestoneCompletionCriteria>
+            <criteriaObjectType>Rule</criteriaObjectType>
+        </milestoneCompletionCriteria>
+        <milestoneCriteriaFilterItems>
+            <field>Case.Priority</field>
+            <operation>equals</operation>
+            <value>High</value>
+        </milestoneCriteriaFilterItems>
+        <milestoneName>First Response</milestoneName>
+        <milestonePauseCriteria/>
+        <minutesToComplete>120</minutesToComplete>
+        <timeTriggers>
+            <actions>
+                <name>First_Response_SLA_Breached1</name>
+                <type>Alert</type>
+            </actions>
+            <timeLength>0</timeLength>
+            <workflowTimeTriggerUnit>Minutes</workflowTimeTriggerUnit>
+        </timeTriggers>
+        <timeTriggers>
+            <actions>
+                <name>Warn_the_Case_Owner_before_the_First_Response_SLA_deadline</name>
+                <type>Alert</type>
+            </actions>
+            <timeLength>-15</timeLength>
+            <workflowTimeTriggerUnit>Minutes</workflowTimeTriggerUnit>
+        </timeTriggers>
+        <useCriteriaStartTime>false</useCriteriaStartTime>
+    </milestones>
+    <milestones>
+        <agreementType>SLA</agreementType>
+        <businessHours>HelpdeskPro Business Hours</businessHours>
+        <isDisplayedOnLinkedEntity>false</isDisplayedOnLinkedEntity>
+        <milestoneCompletionCriteria>
+            <criteriaObjectType>Rule</criteriaObjectType>
+        </milestoneCompletionCriteria>
+        <milestoneCriteriaFilterItems>
+            <field>Case.Priority</field>
+            <operation>equals</operation>
+            <value>High</value>
+        </milestoneCriteriaFilterItems>
+        <milestoneName>Resolution</milestoneName>
+        <milestonePauseCriteria/>
+        <minutesToComplete>480</minutesToComplete>
+        <useCriteriaStartTime>false</useCriteriaStartTime>
+    </milestones>
+    <name>HelpdeskPro Premium SLA</name>
+    <versionMaster>552gK00000OU9Xt</versionMaster>
+    <versionNumber>1</versionNumber>
+</EntitlementProcess>
