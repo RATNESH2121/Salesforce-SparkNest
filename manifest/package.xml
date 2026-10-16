@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <Package xmlns="http://soap.sforce.com/2006/04/metadata">
+
+    <!-- Existing Apex and UI Components -->
     <types>
         <members>*</members>
         <name>ApexClass</name>
@@ -32,5 +34,77 @@
         <members>*</members>
         <name>StaticResource</name>
     </types>
-    <version>67.0</version>
+
+    <!-- Data Model -->
+    <types>
+        <members>*</members>
+        <name>CustomObject</name>
+    </types>
+    <types>
+        <members>*</members>
+        <name>CustomField</name>
+    </types>
+    <types>
+        <members>*</members>
+        <name>ValidationRule</name>
+    </types>
+
+    <!-- Security and Sharing -->
+    <types>
+        <members>*</members>
+        <name>Profile</name>
+    </types>
+    <types>
+        <members>*</members>
+        <name>PermissionSet</name>
+    </types>
+    <types>
+        <members>*</members>
+        <name>CustomPermission</name>
+    </types>
+    <types>
+        <members>*</members>
+        <name>SharingRules</name>
+    </types>
+    
+    <types>
+        <members>*</members>
+        <name>Role</name>
+    </types>
+
+    <!-- Apps, Tabs, Layouts and List Views -->
+    <types>
+        <members>*</members>
+        <name>CustomApplication</name>
+    </types>
+    <types>
+        <members>*</members>
+        <name>CustomTab</name>
+    </types>
+    <types>
+        <members>*</members>
+        <name>Layout</name>
+    </types>
+    <types>
+        <members>*</members>
+        <name>FlexiPage</name>
+    </types>
+    <types>
+        <members>*</members>
+        <name>ListView</name>
+    </types>
+
+    <!-- Duplicate Management -->
+    <types>
+        <members>*</members>
+        <name>MatchingRules</name>
+    </types>
+  
+    <!-- Automation -->
+    <types>
+        <members>*</members>
+        <name>Flow</name>
+    </types>
+
+    <version>68.0</version>
 </Package>

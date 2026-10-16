@@ -1,0 +1,9 @@
+﻿Name,SKU__c,ProductCode,Family,IsActive,Description
+SparkNest Nova Smartphone,SN-PD-001,SN-PD-001,Personal Devices,TRUE,SparkNest Nova smartphone for everyday communication and productivity.
+SparkNest Horizon Laptop,SN-PD-002,SN-PD-002,Personal Devices,TRUE,"Lightweight SparkNest laptop for work, study, and entertainment."
+SparkNest Aura Smart Bulb,SN-SH-001,SN-SH-001,Smart Home,TRUE,App-controlled smart bulb for convenient home lighting.
+SparkNest NestSense Smart Plug,SN-SH-002,SN-SH-002,Smart Home,TRUE,Smart plug for remotely controlling compatible home appliances.
+SparkNest FlexCharge Power Bank,SN-AC-001,SN-AC-001,Accessories,TRUE,Portable power bank for charging compatible mobile devices.
+SparkNest ClearSound Earbuds,SN-AC-002,SN-AC-002,Accessories,TRUE,"Wireless earbuds for calls, music, and everyday listening."
+SparkNest Care Basic Annual Plan,SN-CP-001,SN-CP-001,Annual Care Plans,TRUE,Annual basic care plan for eligible SparkNest products.
+SparkNest Care Plus Annual Plan,SN-CP-002,SN-CP-002,Annual Care Plans,TRUE,Annual enhanced care plan with additional support benefits.
