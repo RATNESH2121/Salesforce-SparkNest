@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomApplication xmlns="http://soap.sforce.com/2006/04/metadata">
+    <brand>
+        <headerColor>#0070D2</headerColor>
+        <logo>SparkNest_Sales_Logo</logo>
+        <logoVersion>1</logoVersion>
+        <shouldOverrideOrgTheme>false</shouldOverrideOrgTheme>
+    </brand>
+    <description>Sales workspace for managing customer enquiries and products</description>
+    <formFactors>Small</formFactors>
+    <formFactors>Large</formFactors>
+    <isNavAutoTempTabsDisabled>false</isNavAutoTempTabsDisabled>
+    <isNavPersonalizationDisabled>false</isNavPersonalizationDisabled>
+    <isNavTabPersistenceDisabled>false</isNavTabPersistenceDisabled>
+    <isOmniPinnedViewEnabled>false</isOmniPinnedViewEnabled>
+    <label>SparkNest Sales</label>
+    <navType>Standard</navType>
+    <profileActionOverrides>
+        <actionName>View</actionName>
+        <content>Enquiry_Record</content>
+        <formFactor>Small</formFactor>
+        <pageOrSobjectType>Enquiry__c</pageOrSobjectType>
+        <type>Flexipage</type>
+        <profile>Standard</profile>
+    </profileActionOverrides>
+    <profileActionOverrides>
+        <actionName>View</actionName>
+        <content>Enquiry_Record</content>
+        <formFactor>Large</formFactor>
+        <pageOrSobjectType>Enquiry__c</pageOrSobjectType>
+        <type>Flexipage</type>
+        <profile>Standard</profile>
+    </profileActionOverrides>
+    <profileActionOverrides>
+        <actionName>View</actionName>
+        <content>Enquiry_Record</content>
+        <formFactor>Small</formFactor>
+        <pageOrSobjectType>Enquiry__c</pageOrSobjectType>
+        <type>Flexipage</type>
+        <profile>SparkNest Support Agent</profile>
+    </profileActionOverrides>
+    <profileActionOverrides>
+        <actionName>View</actionName>
+        <content>Enquiry_Record</content>
+        <formFactor>Large</formFactor>
+        <pageOrSobjectType>Enquiry__c</pageOrSobjectType>
+        <type>Flexipage</type>
+        <profile>SparkNest Support Agent</profile>
+    </profileActionOverrides>
+    <profileActionOverrides>
+        <actionName>View</actionName>
+        <content>Enquiry_Record</content>
+        <formFactor>Small</formFactor>
+        <pageOrSobjectType>Enquiry__c</pageOrSobjectType>
+        <type>Flexipage</type>
+        <profile>SparkNest Sales Rep</profile>
+    </profileActionOverrides>
+    <profileActionOverrides>
+        <actionName>View</actionName>
+        <content>Enquiry_Record</content>
+        <formFactor>Large</formFactor>
+        <pageOrSobjectType>Enquiry__c</pageOrSobjectType>
+        <type>Flexipage</type>
+        <profile>SparkNest Sales Rep</profile>
+    </profileActionOverrides>
+    <profileActionOverrides>
+        <actionName>View</actionName>
+        <content>Enquiry_Record</content>
+        <formFactor>Small</formFactor>
+        <pageOrSobjectType>Enquiry__c</pageOrSobjectType>
+        <type>Flexipage</type>
+        <profile>Admin</profile>
+    </profileActionOverrides>
+    <profileActionOverrides>
+        <actionName>View</actionName>
+        <content>Enquiry_Record</content>
+        <formFactor>Large</formFactor>
+        <pageOrSobjectType>Enquiry__c</pageOrSobjectType>
+        <type>Flexipage</type>
+        <profile>Admin</profile>
+    </profileActionOverrides>
+    <tabs>standard-home</tabs>
+    <tabs>Enquiry__c</tabs>
+    <tabs>standard-Contact</tabs>
+    <tabs>standard-Product2</tabs>
+    <tabs>standard-report</tabs>
+    <tabs>standard-Dashboard</tabs>
+    <uiType>Lightning</uiType>
+    <utilityBar>SparkNest_Sales_UtilityBar</utilityBar>
+</CustomApplication>

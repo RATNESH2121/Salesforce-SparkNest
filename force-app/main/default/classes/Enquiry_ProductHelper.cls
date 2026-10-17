@@ -30,7 +30,6 @@ public with sharing class Enquiry_ProductHelper{
                 }
             }
         }
-
         RecalculateCount(EnquiryIds);
     }
 

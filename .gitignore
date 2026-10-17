@@ -46,3 +46,8 @@ $RECYCLE.BIN/
 **/__pycache__/
 **/.venv/
 **/venv/
+
+# Scratch & Verification Scripts
+scripts/apex/verify_*.apex
+scripts/apex/update_*.apex
+scripts/apex/temp*.apex
