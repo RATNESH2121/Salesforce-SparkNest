@@ -1,7 +1,6 @@
 @RestResource(urlMapping='/sparknest/enquiry/*')
 global with sharing class SparkNestEnquiryAPI {
 
-    // Data received from Postman
     global class EnquiryRequest {
         public String customerName;
         public String customerEmail;
@@ -10,7 +9,6 @@ global with sharing class SparkNestEnquiryAPI {
         public String enquiryType;
     }
 
-    // Helper method to send a JSON response
     private static void sendResponse(
         Integer statusCode,
         Map<String, Object> data
@@ -24,12 +22,10 @@ global with sharing class SparkNestEnquiryAPI {
             Blob.valueOf(JSON.serialize(data));
     }
 
-    // POST: Create a customer enquiry
     @HttpPost
     global static void createEnquiry() {
 
         try {
-            // Read JSON sent by Postman
             String body = RestContext.request.requestBody.toString();
 
             EnquiryRequest input =
@@ -38,7 +34,6 @@ global with sharing class SparkNestEnquiryAPI {
                     EnquiryRequest.class
                 );
 
-            // Validate required fields
             if (input == null ||
                 String.isBlank(input.customerName) ||
                 String.isBlank(input.customerEmail) ||
@@ -61,7 +56,6 @@ global with sharing class SparkNestEnquiryAPI {
                 return;
             }
 
-            // Find Contact using email
             List<Contact> contacts = [
                 SELECT Id, FirstName, LastName, Email, Phone
                 FROM Contact
@@ -74,12 +68,10 @@ global with sharing class SparkNestEnquiryAPI {
 
             if (!contacts.isEmpty()) {
 
-                // Reuse existing Contact
                 customer = contacts[0];
 
             } else {
 
-                // Split full name into first and last name
                 String[] nameParts =
                     input.customerName.trim().split('\\s+');
 
@@ -111,7 +103,6 @@ global with sharing class SparkNestEnquiryAPI {
                 isNewCustomer = true;
             }
 
-            // Create the Enquiry linked to Contact
             Enquiry__c enquiry = new Enquiry__c(
                 Subject__c = input.productName,
                 Contact__c = customer.Id,
@@ -121,7 +112,6 @@ global with sharing class SparkNestEnquiryAPI {
 
             insert enquiry;
 
-            // Return success response
             sendResponse(201, new Map<String, Object>{
                 'success' => true,
                 'message' => 'Enquiry created successfully.',
@@ -154,7 +144,6 @@ global with sharing class SparkNestEnquiryAPI {
         }
     }
 
-    // GET: Retrieve an enquiry using its ID
     @HttpGet
     global static void getEnquiry() {
 

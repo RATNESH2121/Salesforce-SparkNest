@@ -79,6 +79,7 @@
         </value>
     </processMetadataValues>
     <processType>Flow</processType>
+    <runInMode>SystemModeWithoutSharing</runInMode>
     <recordCreates>
         <name>Create_Care_Plan_Case</name>
         <label>Create Care Plan Case</label>

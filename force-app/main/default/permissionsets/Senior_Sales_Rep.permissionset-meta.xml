@@ -184,6 +184,10 @@
         <field>Case.Warranty_Customer__c</field>
         <readable>true</readable>
     </fieldPermissions>
+    <flowAccesses>
+        <enabled>true</enabled>
+        <flow>Convert_Enquiry_to_Case</flow>
+    </flowAccesses>
     <hasActivationRequired>false</hasActivationRequired>
     <label>Senior Sales Rep:</label>
     <objectPermissions>
@@ -206,4 +210,8 @@
         <viewAllFields>false</viewAllFields>
         <viewAllRecords>false</viewAllRecords>
     </objectPermissions>
+    <userPermissions>
+        <enabled>true</enabled>
+        <name>RunFlow</name>
+    </userPermissions>
 </PermissionSet>

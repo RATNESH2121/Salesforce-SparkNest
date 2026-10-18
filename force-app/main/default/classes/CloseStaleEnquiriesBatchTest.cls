@@ -13,8 +13,6 @@ private class CloseStaleEnquiriesBatchTest {
 
         insert staleEnquiry;
 
-        // The trigger creates a follow-up Task.
-        // Remove it so this Enquiry has no recent activity.
         List<Task> generatedTasks = [
             SELECT Id
             FROM Task
@@ -25,7 +23,6 @@ private class CloseStaleEnquiriesBatchTest {
             delete generatedTasks;
         }
 
-        // Create an Enquiry with recent activity.
         Enquiry__c activeEnquiry = new Enquiry__c(
             Subject__c = 'Active Enquiry',
             Customer_Budget__c = 5000,
@@ -34,7 +31,6 @@ private class CloseStaleEnquiriesBatchTest {
 
         insert activeEnquiry;
 
-        // Ensure a recent Task exists for this Enquiry.
         insert new Task(
             Subject = 'Recent Follow Up',
             OwnerId = UserInfo.getUserId(),

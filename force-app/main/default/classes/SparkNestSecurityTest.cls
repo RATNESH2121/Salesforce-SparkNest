@@ -11,7 +11,6 @@ private class SparkNestSecurityTest {
         ];
 
         System.runAs(arjun) {
-            // Arjun can create an Enquiry
             Enquiry__c enq = new Enquiry__c(
                 Subject__c = 'Arjun Laptop Enquiry',
                 Customer_Budget__c = 50000,
@@ -21,7 +20,6 @@ private class SparkNestSecurityTest {
 
             System.assertNotEquals(null, enq.Id, 'Arjun should be able to create an Enquiry');
 
-            // Arjun can delete an Enquiry (Senior Sales Rep perm set grants delete)
             delete enq;
 
             List<Enquiry__c> deletedList = [SELECT Id FROM Enquiry__c WHERE Id = :enq.Id];
@@ -39,7 +37,6 @@ private class SparkNestSecurityTest {
         ];
 
         System.runAs(sneha) {
-            // Sneha should see Care Plan Enquiries shared via Criteria Sharing Rule
             List<Enquiry__c> carePlanEnqs = [
                 SELECT Id, Subject__c, Enquiry_Type__c 
                 FROM Enquiry__c 
@@ -50,7 +47,6 @@ private class SparkNestSecurityTest {
                 'Sneha should see Care Plan Enquiries shared via criteria sharing rule'
             );
 
-            // Sneha should NOT see Product Enquiries owned by other users (OWD Private)
             List<Enquiry__c> productEnqs = [
                 SELECT Id 
                 FROM Enquiry__c 
@@ -62,7 +58,6 @@ private class SparkNestSecurityTest {
                 'Sneha should NOT see Product Enquiries owned by other users'
             );
 
-            // Sneha cannot delete any Enquiry (No Delete on any object)
             Boolean deleteFailed = false;
             try {
                 delete carePlanEnqs;

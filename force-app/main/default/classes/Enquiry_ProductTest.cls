@@ -23,7 +23,6 @@ private class Enquiry_ProductTest {
         );
         insert new List<Enquiry__c>{ enq1, enq2 };
 
-        // Test Insert
         Enquiry_Product__c ep1 = new Enquiry_Product__c(
             Enquiry__c = enq1.Id,
             Product__c = prod1.Id,
@@ -47,7 +46,6 @@ private class Enquiry_ProductTest {
             'Total_Products_Interested__c should be 2 after inserting 2 product interest records'
         );
 
-        // Test Update (Reparenting to enq2)
         ep2.Enquiry__c = enq2.Id;
         update ep2;
 
@@ -72,7 +70,6 @@ private class Enquiry_ProductTest {
             'Total_Products_Interested__c on new Enquiry should increase to 1 after reparenting'
         );
 
-        // Test Delete
         delete ep1;
 
         reloadedEnq1 = [
@@ -86,7 +83,6 @@ private class Enquiry_ProductTest {
             'Total_Products_Interested__c should be 0 after deleting all product interest records'
         );
 
-        // Test Undelete
         undelete ep1;
 
         reloadedEnq1 = [

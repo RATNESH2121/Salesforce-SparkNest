@@ -14,7 +14,6 @@ public with sharing class CloseStaleEnquiriesBatch
     public Database.QueryLocator start(
         Database.BatchableContext bc
     ) {
-        // Local declaration removed; uses the class-level thirtyDaysAgo variable
         return Database.getQueryLocator([
             SELECT Id, Status__c
             FROM Enquiry__c
@@ -28,7 +27,6 @@ public with sharing class CloseStaleEnquiriesBatch
         List<sObject> scope
     ) {
         List<Enquiry__c> enquiries = (List<Enquiry__c>) scope;
-        // Local declaration removed; uses the class-level thirtyDaysAgo variable
         Set<Id> enquiryIds = new Set<Id>();
 
         for (Enquiry__c EachEnq : enquiries) {
