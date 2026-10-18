@@ -1,0 +1,364 @@
+{
+	"info": {
+		"_postman_id": "7db6f7cc-e2b3-46b6-81ca-c20dd110ce5a",
+		"name": "SparkNest",
+		"description": "SparkNest Salesforce Integration API Collection for Custom REST API and Composite API scenarios.",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Scenario 1: Website Enquiry - New Customer",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 201\", function () {",
+							"    pm.response.to.have.status(201);",
+							"});",
+							"",
+							"pm.test(\"Response indicates new customer and success\", function () {",
+							"    var jsonData = pm.response.json();",
+							"    pm.expect(jsonData.success).to.eql(true);",
+							"    pm.expect(jsonData.isNewCustomer).to.eql(true);",
+							"    pm.expect(jsonData.enquiryId).to.be.a('string');",
+							"    pm.expect(jsonData.contactId).to.be.a('string');",
+							"    pm.collectionVariables.set(\"enquiry_id\", jsonData.enquiryId);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"customerName\": \"Rohan Mehra {{$timestamp}}\",\n    \"customerEmail\": \"rohan.mehra.{{$timestamp}}@example.com\",\n    \"customerPhone\": \"9876543210\",\n    \"productName\": \"SparkNest Solar Inverter 5kVA\",\n    \"enquiryType\": \"Product Enquiry\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{instance_url}}/services/apexrest/sparknest/enquiry/",
+					"host": [
+						"{{instance_url}}"
+					],
+					"path": [
+						"services",
+						"apexrest",
+						"sparknest",
+						"enquiry",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Scenario 2: Website Enquiry - Existing Customer",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 201\", function () {",
+							"    pm.response.to.have.status(201);",
+							"});",
+							"",
+							"pm.test(\"Response matches existing customer and success\", function () {",
+							"    var jsonData = pm.response.json();",
+							"    pm.expect(jsonData.success).to.eql(true);",
+							"    pm.expect(jsonData.isNewCustomer).to.eql(false);",
+							"    pm.expect(jsonData.enquiryId).to.be.a('string');",
+							"    pm.expect(jsonData.contactId).to.be.a('string');",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"customerName\": \"Pooja Reddy\",\n    \"customerEmail\": \"pooja.reddy@gmail.com\",\n    \"customerPhone\": \"9876500001\",\n    \"productName\": \"SparkNest Smart Energy Meter\",\n    \"enquiryType\": \"Care Plan Enquiry\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{instance_url}}/services/apexrest/sparknest/enquiry/",
+					"host": [
+						"{{instance_url}}"
+					],
+					"path": [
+						"services",
+						"apexrest",
+						"sparknest",
+						"enquiry",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Scenario 3: Website Enquiry - Missing Email (400)",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 400 Bad Request\", function () {",
+							"    pm.response.to.have.status(400);",
+							"});",
+							"",
+							"pm.test(\"Response returns validation failure\", function () {",
+							"    var jsonData = pm.response.json();",
+							"    pm.expect(jsonData.success).to.eql(false);",
+							"    pm.expect(jsonData.message).to.include(\"required\");",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"customerName\": \"Test Customer\",\n    \"customerEmail\": \"\",\n    \"customerPhone\": \"9876543210\",\n    \"productName\": \"SparkNest Solar Inverter 5kVA\",\n    \"enquiryType\": \"Product Enquiry\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{instance_url}}/services/apexrest/sparknest/enquiry/",
+					"host": [
+						"{{instance_url}}"
+					],
+					"path": [
+						"services",
+						"apexrest",
+						"sparknest",
+						"enquiry",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Scenario 4: Composite API - B2B Onboarding (Success)",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"",
+							"pm.test(\"Both Contact and Enquiry subrequests created (201)\", function () {",
+							"    var jsonData = pm.response.json();",
+							"    pm.expect(jsonData.compositeResponse).to.be.an('array').with.lengthOf(2);",
+							"    pm.expect(jsonData.compositeResponse[0].httpStatusCode).to.eql(201);",
+							"    pm.expect(jsonData.compositeResponse[1].httpStatusCode).to.eql(201);",
+							"    pm.expect(jsonData.compositeResponse[0].referenceId).to.eql(\"NewContactRef\");",
+							"    pm.expect(jsonData.compositeResponse[1].referenceId).to.eql(\"NewEnquiryRef\");",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"allOrNone\": true,\n    \"compositeRequest\": [\n        {\n            \"method\": \"POST\",\n            \"url\": \"/services/data/v68.0/sobjects/Contact\",\n            \"referenceId\": \"NewContactRef\",\n            \"body\": {\n                \"FirstName\": \"Anand\",\n                \"LastName\": \"Verma {{$timestamp}}\",\n                \"Email\": \"anand.verma.{{$timestamp}}@sparknestenergy.com\",\n                \"Phone\": \"9123456780\"\n            }\n        },\n        {\n            \"method\": \"POST\",\n            \"url\": \"/services/data/v68.0/sobjects/Enquiry__c\",\n            \"referenceId\": \"NewEnquiryRef\",\n            \"body\": {\n                \"Subject__c\": \"B2B Commercial Solar Setup\",\n                \"Contact__c\": \"@{NewContactRef.id}\",\n                \"Enquiry_Type__c\": \"Product Enquiry\",\n                \"Source__c\": \"Web\",\n                \"Customer_Budget__c\": 50000\n            }\n        }\n    ]\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{instance_url}}/services/data/v68.0/composite",
+					"host": [
+						"{{instance_url}}"
+					],
+					"path": [
+						"services",
+						"data",
+						"v68.0",
+						"composite"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Scenario 5: Composite API - Rollback on Invalid Budget",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200 or 400\", function () {",
+							"    pm.expect(pm.response.code).to.be.oneOf([200, 400]);",
+							"});",
+							"",
+							"pm.test(\"Composite subrequests failed with rollback (400)\", function () {",
+							"    var jsonData = pm.response.json();",
+							"    pm.expect(jsonData.compositeResponse).to.be.an('array');",
+							"    var enquiryResp = jsonData.compositeResponse.find(r => r.referenceId === \"RollbackEnquiryRef\");",
+							"    pm.expect(enquiryResp.httpStatusCode).to.eql(400);",
+							"    var contactResp = jsonData.compositeResponse.find(r => r.referenceId === \"RollbackContactRef\");",
+							"    pm.expect(contactResp.httpStatusCode).to.eql(400);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"allOrNone\": true,\n    \"compositeRequest\": [\n        {\n            \"method\": \"POST\",\n            \"url\": \"/services/data/v68.0/sobjects/Contact\",\n            \"referenceId\": \"RollbackContactRef\",\n            \"body\": {\n                \"FirstName\": \"Rollback\",\n                \"LastName\": \"Candidate {{$timestamp}}\",\n                \"Email\": \"rollback.candidate.{{$timestamp}}@sparknestenergy.com\",\n                \"Phone\": \"9111122223\"\n            }\n        },\n        {\n            \"method\": \"POST\",\n            \"url\": \"/services/data/v68.0/sobjects/Enquiry__c\",\n            \"referenceId\": \"RollbackEnquiryRef\",\n            \"body\": {\n                \"Subject__c\": \"Invalid Budget Test Enquiry\",\n                \"Contact__c\": \"@{RollbackContactRef.id}\",\n                \"Enquiry_Type__c\": \"Product Enquiry\",\n                \"Source__c\": \"Web\",\n                \"Customer_Budget__c\": 500\n            }\n        }\n    ]\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{instance_url}}/services/data/v68.0/composite",
+					"host": [
+						"{{instance_url}}"
+					],
+					"path": [
+						"services",
+						"data",
+						"v68.0",
+						"composite"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GET Enquiry by ID",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"",
+							"pm.test(\"Enquiry retrieved successfully\", function () {",
+							"    var jsonData = pm.response.json();",
+							"    pm.expect(jsonData.success).to.eql(true);",
+							"    pm.expect(jsonData.enquiryId).to.be.a('string');",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"url": {
+					"raw": "{{instance_url}}/services/apexrest/sparknest/enquiry/?enquiryId={{enquiry_id}}",
+					"host": [
+						"{{instance_url}}"
+					],
+					"path": [
+						"services",
+						"apexrest",
+						"sparknest",
+						"enquiry",
+						""
+					],
+					"query": [
+						{
+							"key": "enquiryId",
+							"value": "{{enquiry_id}}"
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"auth": {
+		"type": "bearer",
+		"bearer": [
+			{
+				"key": "token",
+				"value": "{{access_token}}",
+				"type": "string"
+			}
+		]
+	},
+	"variable": [
+		{
+			"key": "instance_url",
+			"value": "https://orgfarm-0cbac157c8-dev-ed.develop.my.salesforce.com"
+		},
+		{
+			"key": "access_token",
+			"value": ""
+		},
+		{
+			"key": "enquiry_id",
+			"value": ""
+		}
+	]
+}
